@@ -1,0 +1,33 @@
+networks:
+  npm_containers:
+    external: true
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    networks:
+      - npm_containers
+    dns:
+      - ${DNS1}
+      - ${DNS2}
+      - ${DNS3}
+      - ${DNS4}
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=${HOMEPAGE_ALLOWED_HOSTS}
+      - TZ=${TZ}
+      - PGID=${PGID}
+      - PUID=${PUID}
+    labels:
+      - homepage.group=${HPHOMEPAGEGROUP}
+      - homepage.name=${HPHOMEPAGENAME}
+      - homepage.icon=${HPHOMEPAGEICON}
+      - homepage.href=${HPHOMEPAGEHREF}
+      - homepage.description=${HPHOMEPAGEDESCRIPTION}
+    ports:
+      - ${HOMEPAGEWEBPORT}:3000
+    volumes:
+      - ${VOLUMEROOT}/homepage/config:/app/config:rw
+      - ${VOLUMEROOT}/homepage/images:/app/public/images:rw
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
