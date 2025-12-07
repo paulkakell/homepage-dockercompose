@@ -1,13 +1,7 @@
-networks:
-  npm_containers:
-    external: true
-
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: ${CONTAINERNAME}
-    networks:
-      - npm_containers
     dns:
       - ${DNS1}
       - ${DNS2}
