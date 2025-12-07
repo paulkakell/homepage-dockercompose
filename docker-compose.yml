@@ -27,7 +27,7 @@ services:
     ports:
       - ${HOMEPAGEWEBPORT}:3000
     volumes:
-      - ${VOLUMEROOT}/homepage/config:/app/config:rw
-      - ${VOLUMEROOT}/homepage/images:/app/public/images:rw
+      - ${VOLUMEROOT}/${CONTAINERNAME}/config:/app/config:rw
+      - ${VOLUMEROOT}/${CONTAINERNAME}/images:/app/public/images:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     restart: unless-stopped
