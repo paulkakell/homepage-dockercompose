@@ -5,7 +5,7 @@ networks:
 services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
+    container_name: ${CONTAINERNAME}
     networks:
       - npm_containers
     dns:
